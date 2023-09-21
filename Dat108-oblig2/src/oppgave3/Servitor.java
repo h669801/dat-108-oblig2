@@ -1,22 +1,21 @@
-package oppgave2;
+package oppgave3;
 
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Servitor extends Thread{
-	private final HamburgerBrett brett;
+    private final HamburgerBrett brett;
     private final String navn;
 
     public Servitor(HamburgerBrett brett, String navn) {
         this.brett = brett;
         this.navn = navn;
     }
-    
+
 //    @Override
     public void run() {
-        Random random = new Random();
         while (true) {
             try {
-                Thread.sleep(random.nextInt(5000) + 2000); // Tid mellom 2 og 6 sekunder
+                Thread.sleep(ThreadLocalRandom.current().nextInt(4000, 10000));
                 Hamburger hamburger = brett.taAvHamburger(navn);
             } catch (InterruptedException e) {
                 e.printStackTrace();
